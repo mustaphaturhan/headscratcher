@@ -1,0 +1,6 @@
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We need Bluetooth access to detect audio devices</string>
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We need Bluetooth access to detect audio devices</string>
+<key>LSUIElement</key>
+<true/>

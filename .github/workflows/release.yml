@@ -1,0 +1,38 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on version tags
+
+jobs:
+  build:
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+
+    - name: Build App
+      run: |
+        xcodebuild -scheme Headscratcher -configuration Release -archivePath build/Headscratcher.xcarchive archive
+        xcodebuild -exportArchive -archivePath build/Headscratcher.xcarchive -exportPath build/export -exportOptionsPlist exportOptions.plist
+
+    - name: Zip App
+      run: |
+        cd build/export
+        zip -r Headscratcher.zip Headscratcher.app
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/export/Headscratcher.zip
+        draft: false
+        prerelease: false
+        generate_release_notes: true
