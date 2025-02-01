@@ -63,7 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ]
 
         let timeIntervalMenuItem = NSMenuItem(
-            title: "Select Time Interval", action: nil, keyEquivalent: "")
+            title: "Notify after", action: nil, keyEquivalent: "")
         menu.setSubmenu(timeIntervalMenu, for: timeIntervalMenuItem)
 
         menu.addItem(timeIntervalMenuItem)
